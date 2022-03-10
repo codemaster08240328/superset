@@ -137,7 +137,7 @@ def update_id_refs(  # pylint: disable=too-many-locals
         scope_excluded = native_filter.get("scope", {}).get("excluded", [])
         if scope_excluded:
             native_filter["scope"]["excluded"] = [
-                id_map[old_id] if old_id in id_map else old_id for old_id in scope_excluded # no need to get excluded old id from the new id map.
+                id_map[old_id] for old_id in scope_excluded if old_id in id_map
             ]
 
     return fixed
